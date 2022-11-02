@@ -1,0 +1,22 @@
+{
+  "name": "hello-nodejs",
+  "version": "1.0.0",
+  "description": "Hello NodeJs Service",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "NODE_ENV=prod node src/index.js",
+    "test": "NODE_ENV=test nodemon src/index.js"
+  },
+  "author": "Zero65 Technologies Pvt. Ltd.",
+  "dependencies": {
+    "express": "^4.16.4"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  },
+  "nodemonConfig": {
+    "verbose": false,
+    "ignore": [],
+    "delay": "100"
+  }
+}
