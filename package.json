@@ -9,11 +9,9 @@
   },
   "author": "Zero65 Technologies Pvt. Ltd.",
   "dependencies": {
-    "express": "^4.16.4"
+    "express": "^4.18.2"
   },
-  "devDependencies": {
-    "nodemon": "^2.0.4"
-  },
+  "devDependencies": {},
   "nodemonConfig": {
     "verbose": false,
     "ignore": [],
