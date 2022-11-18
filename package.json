@@ -9,6 +9,7 @@
   },
   "author": "Zero65 Technologies Pvt. Ltd.",
   "dependencies": {
+    "@Zero65Tech/utils": "prod",
     "express": "^4.18.2"
   },
   "devDependencies": {},
