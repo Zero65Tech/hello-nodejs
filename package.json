@@ -1,6 +1,6 @@
 {
   "name": "hello-nodejs",
-  "version": "1.0.0",
+  "version": "2",
   "description": "Hello NodeJs Service",
   "main": "src/index.js",
   "scripts": {
@@ -9,10 +9,10 @@
   },
   "author": "Zero65 Technologies Pvt. Ltd.",
   "dependencies": {
-    "@Zero65Tech/utils": "prod",
+    "@zero65/config": "latest",
+    "@zero65/utils": "latest",
     "express": "^4.18.2"
   },
-  "devDependencies": {},
   "nodemonConfig": {
     "verbose": false,
     "ignore": [],

@@ -1,10 +1,12 @@
 const express = require('express');
 const app     = express();
 
+const config = require('./config');
+
 
 
 app.get('/', async (req, res) => {
-  res.send('Hello NodeJs !');
+  res.send(config.message);
 });
 
 app.get('/_env', async (req, res) => {
