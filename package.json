@@ -1,17 +1,34 @@
 {
+  "author": "Zero65 Technologies Pvt. Ltd.",
   "name": "hello-nodejs",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Hello NodeJs Service",
+  "license": "MIT",
   "main": "src/index.js",
   "scripts": {
-    "start": "ENV=prod node src/index.js",
-    "test": "ENV=test nodemon src/index.js"
+    "start": "node src/index.js",
+    "test": "jest --coverage test",
+    "lint": "npx eslint --fix src test"
   },
-  "author": "Zero65 Technologies Pvt. Ltd.",
   "dependencies": {
-    "@zero65/config": "latest",
-    "@zero65/utils": "latest",
-    "express": "^4.18.2"
+    "@zero65tech/config": "latest",
+    "express": "4.18.x"
+  },
+  "devDependencies": {
+    "eslint": "8.54.x",
+    "jest": "29.7.x"
+  },
+  "eslintConfig": {
+    "env": {
+      "es2021": true,
+      "jest": true,
+      "node": true
+    },
+    "extends": "eslint:recommended",
+    "parserOptions": {
+      "ecmaVersion": "latest"
+    },
+    "rules": {}
   },
   "nodemonConfig": {
     "verbose": false,
