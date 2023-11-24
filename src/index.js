@@ -1,19 +1,7 @@
 const express = require('express');
 const app     = express();
+const route   = require('./routes/route')
 
-const config = require('@zero65tech/config');
-
-
-
-app.get('/', async (req, res) => {
-  res.status(200).send(config.message);
-});
-
-app.get('/_env', async (req, res) => {
-  res.send(process.env);
-});
-
+app.use('/', route)
 
 app.listen(process.env.PORT || 8080, console.log(`index: Server is up and listening at ${ process.env.PORT || 8080 } port.`));
-
-module.exports = {app}
