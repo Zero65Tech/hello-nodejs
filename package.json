@@ -2,7 +2,7 @@
   "author": "Zero65 Technologies Pvt. Ltd.",
   "name": "hello-nodejs",
   "version": "0.3.0",
-  "description": "Hello NodeJs Service",
+  "description": "Node.js Service Template",
   "license": "MIT",
   "main": "src/index.js",
   "scripts": {
