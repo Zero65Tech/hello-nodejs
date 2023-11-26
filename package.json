@@ -4,9 +4,9 @@
   "version": "0.3.0",
   "description": "Node.js Service Template",
   "license": "MIT",
-  "main": "src/index.js",
+  "main": "server.js",
   "scripts": {
-    "start": "node src/index.js",
+    "start": "node server.js",
     "test": "jest --coverage test",
     "lint": "npx eslint --fix src test"
   },
