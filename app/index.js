@@ -1,14 +1,18 @@
 const express = require('express');
 const app     = express();
 
-const config  = require('@zero65tech/config');
+const Config  = require('@zero65tech/config');
+
+
 
 app.get('/', async (req, res) => {
-  res.send(config.message);
+  res.send(Config.message);
 });
 
 app.get('/_env', async (req, res) => {
   res.send(process.env);
 });
+
+
 
 module.exports = app;
