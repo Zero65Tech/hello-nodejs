@@ -1,6 +1,4 @@
-
-process.env.STAGE = process.env.STAGE || 'alpha';
-
-const app  = require('./app/index.js');
-const port = process.env.PORT || 8080;
-app.listen(port, console.log(`Server is up and listening at ${ port } port.`));
+require('./app/index.js')
+    .listen(
+        process.env.PORT,
+        console.log(`\n\nServer (${ process.env.STAGE }) is up and listening at ${ process.env.PORT } port.\n\n`));
