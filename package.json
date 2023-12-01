@@ -11,7 +11,7 @@
     "lint": "npx eslint --fix src test"
   },
   "dependencies": {
-    "@zero65tech/config": "latest",
+    "@zero65/config": "2.0.x",
     "express": "4.18.x"
   },
   "devDependencies": {
