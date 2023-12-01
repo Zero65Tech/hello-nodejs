@@ -1,3 +1,5 @@
+const Config = require('@zero65/config');
+
 require('./app/index.js')
     .listen(
         process.env.PORT,
