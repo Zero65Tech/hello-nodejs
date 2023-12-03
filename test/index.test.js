@@ -23,7 +23,7 @@ test('/_env', async () => {
 
   const env = JSON.parse(response.text);
 
-  expect(env.npm_package_name).toBe('hello-nodejs');
+  expect(env).toHaveProperty('npm_package_name', 'hello-nodejs');
   expect(env.STAGE).toMatch(/^(alpha|beta|gamma|prod)$/);
 
 });

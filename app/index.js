@@ -1,7 +1,7 @@
 const express = require('express');
 const app     = express();
 
-const Config  = require('@zero65tech/config');
+const Config  = require('@zero65/config');
 
 
 
