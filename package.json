@@ -12,6 +12,8 @@
   },
   "dependencies": {
     "@zero65/config": "2.0.x",
+    "@zero65tech/google-cloud-platform": "2.0.x",
+    "@zero65tech/indian-stock-market": "4.0.x",
     "express": "4.18.x"
   },
   "devDependencies": {
