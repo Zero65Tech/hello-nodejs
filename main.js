@@ -1,9 +1,12 @@
 (async () => {
 
-  const Config = require('@zero65/config');
-  
   const GCP = require('@zero65tech/google-cloud-platform');
-  await GCP.init(Config['@zero65tech']['google-cloud-platform']);
+  await GCP.init({
+    firestore: {
+      project: 'zero65-test',
+      collections: collections[ 'HELLO_DOCUMENTS' ]
+    }
+  });
 
   require('./app').listen(
       process.env.PORT,
