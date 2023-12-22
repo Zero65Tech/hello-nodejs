@@ -2,19 +2,18 @@ const request = require('supertest');
 const app     = require('../app');
 
 
-
-test('/', async () => {
+test('/', async() => {
 
   const response = await request(app).get('/');
 
   expect(response.status).toBe(200);
   expect(response.headers['content-type']).toMatch(/^text\/html;/);
-  
+
   expect(response.text).toBe('Hello NodeJs !');
 
 });
 
-test('/_env', async () => {
+test('/_env', async() => {
 
   const response = await request(app).get('/_env');
 

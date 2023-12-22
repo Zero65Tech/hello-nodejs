@@ -1,6 +1,6 @@
 const express = require('express');
 const app     = express();
-const { createDocument, readDocument, updateDocument, deleteDocument } = require('./firestoreOperations');
+const { createDocument, readDocument, updateDocument, deleteDocument } = require('../data');
 const Config  = require('@zero65/config');
 app.use(express.json());
 
