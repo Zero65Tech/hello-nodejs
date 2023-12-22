@@ -1,60 +1,51 @@
 const express = require('express');
 const app     = express();
 
-const { createDocument, readDocument, updateDocument, deleteDocument } = require('../data');
+const Data = require('../data');
 
 
 app.use(express.json());
 
 
-// Create a document
-app.post('/create', async(req, res) => {
-  try {
-    const { collection, data } = req.body;
-    const docId = await createDocument(collection, data);
-    res.status(201).json({ message: 'Document created successfully', docId });
-  } catch (error) {
-    console.error(error);
-    res.status(500).send(`Internal Server Error: ${error.message}`);
-  }
+
+app.get('/list', async(req, res) => {
+
+  let list = await Data.list();
+
+  res.send(list);
+
 });
 
-// Read a document
-app.get('/read/:collection/:docId', async(req, res) => {
-  try {
-    const { collection, docId } = req.params;
-    await readDocument(collection, docId);
-    res.status(200).send('Read operation successful');
-  } catch (error) {
-    console.error(error);
-    res.status(500).send('Internal Server Error');
-  }
+app.post('/add', async(req, res) => {
+
+  let data = req.body;
+
+  data = await Data.add(data);
+
+  res.send(data);
+
 });
 
-// Update a field in a document
-app.put('/update/:collection/:docId', async(req, res) => {
-  try {
-    const { collection, docId } = req.params;
-    const newData = req.body;
-    await updateDocument(collection, docId, newData);
-    res.status(200).json({ message: 'Document updated successfully' });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
+app.post('/update', async(req, res) => {
+
+  let { id, ...updates } = req.body;
+
+  await Data.update(id, updates);
+
+  res.send('Document updated successfully !');
+
 });
 
-// Delete a document
-app.delete('/delete/:collection/:docId', async(req, res) => {
-  try {
-    const { collection, docId } = req.params;
-    await deleteDocument(collection, docId);
-    res.status(200).json({ message: 'Document deleted successfully' });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
+app.post('/delete', async(req, res) => {
+
+  let { id } = req.body;
+
+  await Data.delete(id);
+
+  res.send('Document deleted successfully !');
+
 });
+
 
 
 module.exports = app;

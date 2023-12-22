@@ -7,7 +7,7 @@ async function get(id) {
   return doc.exists ? { id: doc.id, ...doc.data() } : null;
 }
 
-async function list(id) {
+async function list() {
   let snap = await Firestore.HELLO_DOCUMENTS.get();
   return snap.docs.map(doc => { return { id: doc.id, ...doc.data() } });
 }
