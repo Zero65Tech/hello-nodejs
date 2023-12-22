@@ -1,6 +1,7 @@
 const { Firestore } = require('@zero65tech/google-cloud-platform');
 
 
+
 async function get(id) {
   const doc = await Firestore.HELLO_DOCUMENTS.doc(id).get();
   return doc.exists ? { id: doc.id, ...doc.data() } : null;
@@ -23,6 +24,7 @@ async function update(id, data) {
 async function purge(id) {
   await Firestore.HELLO_DOCUMENTS.doc(id).delete();
 }
+
 
 
 module.exports = { get, list, add, update, purge };

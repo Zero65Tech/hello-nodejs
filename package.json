@@ -43,7 +43,7 @@
       "arrow-spacing": "error",
       "object-curly-spacing": ["error", "always"],
       "eol-last": ["error", "always"],
-      "no-multiple-empty-lines": ["error", { "max": 2, "maxEOF": 1 }],
+      "no-multiple-empty-lines": ["error", { "max": 3, "maxEOF": 1 }],
       "brace-style": ["error", "1tbs", { "allowSingleLine": true }],
       "no-var": "error",
       "prefer-const": "warn",
