@@ -7,8 +7,8 @@
   "main": "main.js",
   "scripts": {
     "start": "node main.js",
-    "test": "jest --coverage test",
-    "lint": "npx eslint --fix app test"
+    "test": "jest --coverage --testPathPattern=test/",
+    "lint": "npx eslint --fix app data test"
   },
   "dependencies": {
     "@zero65/config": "2.0.x",
@@ -43,7 +43,7 @@
       "arrow-spacing": "error",
       "object-curly-spacing": ["error", "always"],
       "eol-last": ["error", "always"],
-      "no-multiple-empty-lines": ["error", { "max": 2, "maxEOF": 1 }],
+      "no-multiple-empty-lines": ["error", { "max": 3, "maxEOF": 1 }],
       "brace-style": ["error", "1tbs", { "allowSingleLine": true }],
       "no-var": "error",
       "prefer-const": "warn",
