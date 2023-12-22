@@ -1,12 +1,14 @@
 const express = require('express');
 const app     = express();
+
 const { createDocument, readDocument, updateDocument, deleteDocument } = require('../data');
-const Config  = require('@zero65/config');
+
+
 app.use(express.json());
 
 
 // Create a document
-app.post('/create', async (req, res) => {
+app.post('/create', async(req, res) => {
   try {
     const { collection, data } = req.body;
     const docId = await createDocument(collection, data);
@@ -18,7 +20,7 @@ app.post('/create', async (req, res) => {
 });
 
 // Read a document
-app.get('/read/:collection/:docId', async (req, res) => {
+app.get('/read/:collection/:docId', async(req, res) => {
   try {
     const { collection, docId } = req.params;
     await readDocument(collection, docId);
@@ -30,10 +32,10 @@ app.get('/read/:collection/:docId', async (req, res) => {
 });
 
 // Update a field in a document
-app.put('/update/:collection/:docId', async (req, res) => {
+app.put('/update/:collection/:docId', async(req, res) => {
   try {
     const { collection, docId } = req.params;
-    const newData = req.body; 
+    const newData = req.body;
     await updateDocument(collection, docId, newData);
     res.status(200).json({ message: 'Document updated successfully' });
   } catch (error) {
@@ -43,7 +45,7 @@ app.put('/update/:collection/:docId', async (req, res) => {
 });
 
 // Delete a document
-app.delete('/delete/:collection/:docId', async (req, res) => {
+app.delete('/delete/:collection/:docId', async(req, res) => {
   try {
     const { collection, docId } = req.params;
     await deleteDocument(collection, docId);
