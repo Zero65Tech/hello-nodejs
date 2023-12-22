@@ -7,10 +7,9 @@ const Data = require('../data');
 app.use(express.json());
 
 
-
 app.get('/list', async(req, res) => {
 
-  let list = await Data.list();
+  const list = await Data.list();
 
   res.send(list);
 
@@ -28,7 +27,7 @@ app.post('/add', async(req, res) => {
 
 app.post('/update', async(req, res) => {
 
-  let { id, ...updates } = req.body;
+  const { id, ...updates } = req.body;
 
   await Data.update(id, updates);
 
@@ -38,14 +37,13 @@ app.post('/update', async(req, res) => {
 
 app.post('/delete', async(req, res) => {
 
-  let { id } = req.body;
+  const { id } = req.body;
 
   await Data.delete(id);
 
   res.send('Document deleted successfully !');
 
 });
-
 
 
 module.exports = app;
