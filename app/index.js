@@ -9,6 +9,18 @@ app.use(express.json());
 
 
 
+app.get('/', async (req, res) => {
+
+  res.send('Hello NodeJs !');
+
+});
+
+app.get('/_env', async (req, res) => {
+
+  res.send(process.env);
+  
+});
+
 app.get('/list', async(req, res) => {
 
   const list = await Data.list();

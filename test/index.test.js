@@ -1,6 +1,7 @@
 const request = require('supertest');
-const app     = require('../app');
 
+const Config = require('@zero65/config');
+const app    = require('../app');
 
 test('/', async() => {
 
@@ -23,6 +24,7 @@ test('/_env', async() => {
   const env = JSON.parse(response.text);
 
   expect(env).toHaveProperty('npm_package_name', 'hello-nodejs');
+  expect(env.PORT).toBe('8080');
   expect(env.STAGE).toMatch(/^(alpha|beta|gamma|prod)$/);
 
 });
