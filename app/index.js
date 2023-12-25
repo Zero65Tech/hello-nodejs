@@ -53,7 +53,7 @@ app.post('/delete', async(req, res) => {
 
   const { id } = req.body;
 
-  await Data.delete(id);
+  await Data.purge(id);
 
   res.send('Document deleted successfully !');
 
