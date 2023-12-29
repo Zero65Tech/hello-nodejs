@@ -1,11 +1,13 @@
 const express = require('express');
 const app     = express();
+const cors = require('cors');
 
 const Data = require('../data');
 
 
 
 app.use(express.json());
+app.use(cors());
 
 
 
