@@ -15,7 +15,7 @@
     "@zero65tech/google-cloud-platform": "2.0.x",
     "@zero65tech/indian-stock-market": "4.1.x",
     "cors": "^2.8.5",
-    "express": "4.18.x"
+    "express": "4.19.x"
   },
   "devDependencies": {
     "eslint": "8.54.x",
