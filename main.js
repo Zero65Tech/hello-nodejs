@@ -11,10 +11,7 @@
 
   if(process.argv[2] == 'build') {
 
-    await require('./build/profiles')('CollegeStudent');
-    await require('./build/profiles')('WorkingProfessional');
-    await require('./build/profiles')('SmallBusiness');
-    await require('./build/reports')();
+    await require('./build')();
 
   } else if(process.argv[2] == 'cron') {
 

@@ -23,7 +23,7 @@ app.get('/_env', async (req, res) => {
   
 });
 
-app.get('/list', async(req, res) => {
+app.get('/list', async (req, res) => {
 
   const list = await Data.list();
 
@@ -31,7 +31,7 @@ app.get('/list', async(req, res) => {
 
 });
 
-app.post('/', async(req, res) => {
+app.post('/', async (req, res) => {
 
   let data = req.body;
 
@@ -41,7 +41,7 @@ app.post('/', async(req, res) => {
 
 });
 
-app.put('/', async(req, res) => {
+app.put('/', async (req, res) => {
 
   const { id, ...updates } = req.body;
 
@@ -51,7 +51,7 @@ app.put('/', async(req, res) => {
 
 });
 
-app.patch('/', async(req, res) => {
+app.patch('/', async (req, res) => {
 
   const { id, ...updates } = req.body;
 
@@ -61,7 +61,7 @@ app.patch('/', async(req, res) => {
 
 });
 
-app.delete('/', async(req, res) => {
+app.delete('/', async (req, res) => {
 
   const { id } = req.body;
 
