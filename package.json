@@ -6,55 +6,40 @@
   "license": "MIT",
   "main": "main.js",
   "scripts": {
-    "start": "node main.js",
+    "start": "node main.js server",
+    "build": "node main.js build",
+    "cron": "node main.js cron",
     "test": "jest --coverage --testPathPattern=test/",
     "lint": "npx eslint --fix app data test"
   },
   "dependencies": {
-    "@zero65/config": "2.0.x",
-    "@zero65tech/google-cloud-platform": "2.0.x",
+    "@zero65/config": "2.2.x",
+    "@zero65tech/date-string-ist": "4.0.x",
+    "@zero65tech/file": "4.0.x",
+    "@zero65tech/firestore": "4.0.x",
+    "@zero65tech/format": "4.0.x",
     "@zero65tech/indian-stock-market": "4.1.x",
+    "@zero65tech/object": "4.0.x",
+    "@zero65tech/track": "3.0.x",
     "cors": "^2.8.5",
-    "express": "4.18.x"
+    "express": "4.18.x",
+    "lodash": "4.17.x"
   },
   "devDependencies": {
+    "@zero65tech/eslint-config": "2.0.x",
     "eslint": "8.54.x",
     "jest": "29.7.x",
     "supertest": "6.3.x"
   },
   "eslintConfig": {
-    "env": {
-      "es2021": true,
-      "jest": true,
-      "node": true
-    },
-    "extends": "eslint:recommended",
-    "parserOptions": {
-      "ecmaVersion": "latest"
-    },
-    "rules": {
-      "indent": ["error", 2],
-      "linebreak-style": ["error", "unix"],
-      "quotes": ["error", "single"],
-      "semi": ["error", "always"],
-      "no-console": "off",
-      "no-unused-vars": "warn",
-      "no-trailing-spaces": "error",
-      "comma-dangle": ["error", "always-multiline"],
-      "arrow-spacing": "error",
-      "object-curly-spacing": ["error", "always"],
-      "eol-last": ["error", "always"],
-      "no-multiple-empty-lines": ["error", { "max": 3, "maxEOF": 1 }],
-      "brace-style": ["error", "1tbs", { "allowSingleLine": true }],
-      "no-var": "error",
-      "prefer-const": "warn",
-      "space-before-function-paren": ["error", "never"],
-      "eqeqeq": "warn"
-    }
+    "extends": "@zero65tech"
   },
   "nodemonConfig": {
     "verbose": false,
-    "ignore": [],
+    "ignore": [
+      "data",
+      "reports"
+    ],
     "delay": "100"
   }
 }

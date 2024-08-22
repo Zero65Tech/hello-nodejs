@@ -1,17 +1,28 @@
 (async () => {
 
-  const Config = require('@zero65/config'); // Sets PORT to 8080
+  process.env.STAGE = process.env.STAGE || 'alpha';
+  process.env.PORT  = process.env.PORT  || 8080;
 
-  const GCP = require('@zero65tech/google-cloud-platform');
-  await GCP.init({
-    firestore: {
-      project: 'zero65-test',
-      collections: [ 'HELLO_DOCUMENTS' ]
-    }
-  });
+  const Firestore = require('@zero65tech/firestore');
+  await Firestore.init(require('@zero65/config/firestore'));
 
-  require('./app').listen(
-      process.env.PORT,
-      console.log(`\n\nServer (${ process.env.STAGE }) is up and listening at ${ process.env.PORT } port.\n\n`));
+  if(process.argv[2] == 'build') {
+
+    await require('./build/profiles')('CollegeStudent');
+    await require('./build/profiles')('WorkingProfessional');
+    await require('./build/profiles')('SmallBusiness');
+    await require('./build/reports')();
+
+  } else if(process.argv[2] == 'cron') {
+
+    await require('./cron')();
+
+  } else if(process.argv[2] == 'server') {
+
+    require('./app').listen(
+        process.env.PORT,
+        console.log(`\n\nServer (${ process.env.STAGE }) is up and listening at ${ process.env.PORT } port.\n\n`));
+
+  }
 
 })();

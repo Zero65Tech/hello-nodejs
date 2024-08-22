@@ -1,0 +1,9 @@
+*
+!main.js
+!app
+!build
+!cron
+!data
+!processors
+!package.json
+!node_modules
