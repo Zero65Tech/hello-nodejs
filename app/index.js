@@ -31,7 +31,7 @@ app.get('/list', async(req, res) => {
 
 });
 
-app.post('/add', async(req, res) => {
+app.post('/', async(req, res) => {
 
   let data = req.body;
 
@@ -41,23 +41,33 @@ app.post('/add', async(req, res) => {
 
 });
 
-app.post('/update', async(req, res) => {
+app.put('/', async(req, res) => {
 
   const { id, ...updates } = req.body;
 
   await Data.update(id, updates);
 
-  res.send('Document updated successfully !');
+  res.sendStatus(204);
 
 });
 
-app.post('/delete', async(req, res) => {
+app.patch('/', async(req, res) => {
+
+  const { id, ...updates } = req.body;
+
+  await Data.update(id, updates);
+
+  res.sendStatus(204);
+
+});
+
+app.delete('/', async(req, res) => {
 
   const { id } = req.body;
 
   await Data.purge(id);
 
-  res.send('Document deleted successfully !');
+  res.sendStatus(204);
 
 });
 

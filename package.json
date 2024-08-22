@@ -13,7 +13,6 @@
     "lint": "npx eslint --fix app data test"
   },
   "dependencies": {
-    "@zero65/config": "2.2.x",
     "@zero65tech/date-string-ist": "4.0.x",
     "@zero65tech/file": "4.0.x",
     "@zero65tech/firestore": "4.0.x",

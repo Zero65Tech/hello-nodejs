@@ -4,7 +4,10 @@
   process.env.PORT  = process.env.PORT  || 8080;
 
   const Firestore = require('@zero65tech/firestore');
-  await Firestore.init(require('@zero65/config/firestore'));
+  await Firestore.init({
+    project: 'zero65-test',
+    collections: [ 'HELLO_DOCUMENTS' ]
+  });
 
   if(process.argv[2] == 'build') {
 
