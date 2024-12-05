@@ -1,0 +1,10 @@
+{
+    "image": "mcr.microsoft.com/devcontainers/universal:2",
+    "remoteEnv": {
+      "GOOGLE_APPLICATION_CREDENTIALS": "/workspaces/hello-nodejs/service-account-test.json"
+    },
+    "postAttachCommand": {
+      "server": "echo '@zero65:registry=https://asia-south1-npm.pkg.dev/zero65/npm/' > ~/.npmrc && npm install -g google-artifactregistry-auth && npx google-artifactregistry-auth && npm install && npm install -g nodemon && npm start"
+    }
+  }
+  
