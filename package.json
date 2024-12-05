@@ -1,16 +1,14 @@
 {
   "author": "Zero65 Technologies Pvt. Ltd.",
   "name": "hello-nodejs",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Node.js Service Template",
   "license": "MIT",
   "main": "main.js",
   "scripts": {
     "start": "node main.js server",
-    "build": "node main.js build",
-    "cron": "node main.js cron",
     "test": "jest --coverage --testPathPattern=test/",
-    "lint": "npx eslint --fix app data test"
+    "lint": "npx eslint --fix src test"
   },
   "dependencies": {
     "@zero65tech/date-string-ist": "4.0.x",
@@ -35,10 +33,7 @@
   },
   "nodemonConfig": {
     "verbose": false,
-    "ignore": [
-      "data",
-      "reports"
-    ],
+    "ignore": [],
     "delay": "100"
   }
 }
