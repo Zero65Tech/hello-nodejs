@@ -2,7 +2,7 @@
     "image": "mcr.microsoft.com/devcontainers/universal:2",
     "waitFor": "onCreateCommand",
     "updateContentCommand": "npm install",
-    "postStartCommand": "./setup.sh",
+    "postStartCommand": "./.devcontainer/setup.sh",
     "postAttachCommand": {
       "server": "npm start"
     }
