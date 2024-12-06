@@ -9,3 +9,5 @@ npm install -g google-artifactregistry-auth nodemon
 
 npx google-artifactregistry-auth
 npm install
+
+echo "DONE !" > ./.devcontainer/status.txt
