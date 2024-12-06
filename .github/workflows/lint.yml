@@ -2,8 +2,9 @@ name: Linting
 
 on:
   push:
-    branches:
+    branches-ignore:
       - master
+      - main
 
 jobs:
   test:
