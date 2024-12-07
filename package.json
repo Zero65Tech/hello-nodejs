@@ -6,8 +6,11 @@
   "main": "src/index.js",
   "scripts": {
     "start": "node src/index.js",
+    "start:dev": "nodemon src/index.js",
     "test": "jest --coverage --testPathPattern=test/",
-    "lint": "npx eslint --fix src test"
+    "lint": "npx eslint --fix src test",
+    "build": "tsc",
+    "build:dev": "tsc --watch"
   },
   "dependencies": {
     "@zero65tech/date-string-ist": "4.0.x",
@@ -22,10 +25,13 @@
     "lodash": "4.17.x"
   },
   "devDependencies": {
+    "@types/express": "5.0.x",
+    "@types/node": "22.10.x",
     "@zero65tech/eslint-config": "2.0.x",
     "eslint": "8.54.x",
     "jest": "29.7.x",
-    "supertest": "6.3.x"
+    "supertest": "6.3.x",
+    "typescript": "5.7.x"
   },
   "eslintConfig": {
     "extends": "@zero65tech"

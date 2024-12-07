@@ -10,6 +10,6 @@ fi
 
 export GOOGLE_APPLICATION_CREDENTIALS="$HOME/service-account.json"
 
-npm install -g google-artifactregistry-auth nodemon
+npm install -g google-artifactregistry-auth typescript nodemon
 
-npx google-artifactregistry-auth && npm install && npm start
+npx google-artifactregistry-auth && npm install && npm run start:dev
