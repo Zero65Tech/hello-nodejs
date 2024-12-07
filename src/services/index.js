@@ -14,15 +14,15 @@ async function list() {
 
   const snap = await Firestore.HELLO_DOCUMENTS.get();
 
-  return snap.docs.map(doc => { return { id: doc.id, ...doc.data() }; });
+  return snap.docs.map(doc => ({ id: doc.id, ...doc.data() }));
 
 }
 
 async function add(data) {
 
   data.timestamp = {
-    create:new Date(),
-    update:new Date()
+    create: new Date(),
+    update: new Date()
   };
 
   const ref = await Firestore.HELLO_DOCUMENTS.add(data);

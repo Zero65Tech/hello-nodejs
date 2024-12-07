@@ -34,6 +34,6 @@
   "nodemonConfig": {
     "verbose": false,
     "ignore": [],
-    "delay": "1000"
+    "delay": "5000"
   }
 }
