@@ -1,4 +1,4 @@
-const Data = require('../services/entity');
+const Data = require('../models/entity');
 
 
 
