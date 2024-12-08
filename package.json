@@ -11,15 +11,16 @@
     "lint": "npx eslint --fix src test"
   },
   "dependencies": {
+    "@google-cloud/firestore": "7.11.x",
     "@zero65tech/date-string-ist": "4.0.x",
     "@zero65tech/file": "4.0.x",
-    "@zero65tech/firestore": "4.0.x",
     "@zero65tech/format": "4.0.x",
     "@zero65tech/indian-stock-market": "4.1.x",
     "@zero65tech/log": "4.0.x",
     "@zero65tech/object": "4.0.x",
     "cors": "2.8.x",
     "express": "4.21.x",
+    "joi": "17.13.x",
     "lodash": "4.17.x"
   },
   "devDependencies": {
@@ -34,6 +35,6 @@
   "nodemonConfig": {
     "verbose": false,
     "ignore": [],
-    "delay": "1000"
+    "delay": "100"
   }
 }
