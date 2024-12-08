@@ -1,16 +1,10 @@
-const Firestore = require('@zero65tech/firestore');
-
-
-
-exports.get = async (id) => {
-  const doc = await Firestore.HELLO_DOCUMENTS.doc(id).get();
-  return doc.exists ? { id: doc.id, ...doc.data() } : null;
-}
+const entityModel = require('../models/entity');
 
 exports.list = async () => {
-  const snap = await Firestore.HELLO_DOCUMENTS.get();
-  return snap.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+  let entities = await entityModel.readAll();
+  return entities;
 }
+
 exports.add = async (data) => {
   data.timestamp = {
     create: new Date(),

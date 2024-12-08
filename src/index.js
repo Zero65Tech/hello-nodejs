@@ -4,10 +4,7 @@
   process.env.PORT  = process.env.PORT  || 8080;
 
   const Firestore = require('@zero65tech/firestore');
-  await Firestore.init({
-    project: 'zero65-test',
-    collections: [ 'HELLO_DOCUMENTS' ]
-  });
+  await Firestore.init({ projectId: 'zero65-test' });
 
   require('./app').listen(
       process.env.PORT,
