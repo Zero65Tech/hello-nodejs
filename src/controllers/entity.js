@@ -1,25 +1,23 @@
 const entityService = require('../services/entity');
 
-
-
 exports.list = async (req, res) => {
   const list = await entityService.list();
   res.send(list);
 };
 
-exports.post = async (req, res) => {
-  let data = req.body;
-  data = await entityService.add(data);
-  res.send(data);
+exports.add = async (req, res) => {
+  const data = req.body;
+  const id = await entityService.add(data);
+  res.send({ id });
 };
 
-exports.put = async (req, res) => {
+exports.set = async (req, res) => {
   const { id, ...updates } = req.body;
   await entityService.update(id, updates);
   res.sendStatus(204);
 };
 
-exports.patch = async (req, res) => {
+exports.update = async (req, res) => {
   const { id, ...updates } = req.body;
   await entityService.update(id, updates);
   res.sendStatus(204);
@@ -27,6 +25,6 @@ exports.patch = async (req, res) => {
 
 exports.delete = async (req, res) => {
   const { id } = req.body;
-  await entityService.purge(id);
+  await entityService.delete(id);
   res.sendStatus(204);
 };

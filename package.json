@@ -14,7 +14,6 @@
     "@google-cloud/firestore": "7.11.x",
     "@zero65tech/date-string-ist": "4.0.x",
     "@zero65tech/file": "4.0.x",
-    "@zero65tech/firestore": "4.0.x",
     "@zero65tech/format": "4.0.x",
     "@zero65tech/indian-stock-market": "4.1.x",
     "@zero65tech/log": "4.0.x",

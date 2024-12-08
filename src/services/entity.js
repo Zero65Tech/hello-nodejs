@@ -9,15 +9,19 @@ exports.add = async (data) => {
     create: new Date(),
     update: new Date()
   };
-  const ref = await Firestore.HELLO_DOCUMENTS.add(data);
-  return { id: ref.id, ...data };
+  return entityRepository.create(data);
+}
+
+exports.set = async (id, updates) => {
+  updates[ 'timestamp.update' ] = new Date();
+  await entityRepository.set(id, updates);
 }
 
 exports.update = async (id, updates) => {
   updates[ 'timestamp.update' ] = new Date();
-  await Firestore.HELLO_DOCUMENTS.doc(id).update(updates);
+  await entityRepository.set(id, updates);
 }
 
-exports.purge = async (id) => {
-  await Firestore.HELLO_DOCUMENTS.doc(id).delete();
+exports.delete = async (id) => {
+  await entityRepository.delete(id);
 }

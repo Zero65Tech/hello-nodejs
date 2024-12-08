@@ -1,12 +1,12 @@
 const express = require('express');
-const controller = require('../controllers/entity');
+const entityController = require('../controllers/entity');
 
 const router = express.Router();
 
-router.get('/list', controller.list);
-router.post('/', controller.post);
-router.put('/', controller.put);
-router.patch('/', controller.patch);
-router.delete('/', controller.delete);
+router.get('/list', entityController.list);
+router.post('/', entityController.add);
+router.put('/', entityController.set);
+router.patch('/', entityController.update);
+router.delete('/', entityController.delete);
 
 module.exports = router;

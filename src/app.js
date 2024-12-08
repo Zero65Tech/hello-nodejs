@@ -5,11 +5,6 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.use((req, res, next) => {
-  console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
-  next();
-});
-
 app.use('/', require('./routes'));
 app.use('/entity', require('./routes/entity'));
 

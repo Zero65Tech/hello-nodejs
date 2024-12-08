@@ -1,9 +1,9 @@
 const express = require('express');
-const controller = require('../controllers/index');
+const rootController = require('../controllers/index');
 
 const router = express.Router();
 
-router.get('/', controller.getMsg);
-router.get('/env', controller.getEnv);
+router.get('/', rootController.getMsg);
+router.get('/env', rootController.getEnv);
 
 module.exports = router;
