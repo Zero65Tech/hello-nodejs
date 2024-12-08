@@ -5,4 +5,8 @@ module.exports = Joi.object({
   name: Joi.string().required(),
   info: Joi.string().required(),
   count: Joi.number().integer().min(0).required(),
+  timestamp: Joi.object({
+    create: Joi.date().iso().required(),
+    update: Joi.date().iso().required()
+  }).required()
 });
