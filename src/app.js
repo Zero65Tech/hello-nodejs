@@ -10,7 +10,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use('/', require('./routes/root'));
+app.use('/', require('./routes'));
 app.use('/entity', require('./routes/entity'));
 
 module.exports = app;

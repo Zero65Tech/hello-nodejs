@@ -1,9 +1,10 @@
 const firestore = require('@google-cloud/firestore');
+
+const Config = require('../config/firestore');
+const Firestore = new firestore.Firestore({ projectId: Config.projectId });
+const Collection = Firestore.collection(Config.collection);
+
 const entityModel = require('../models/entity');
-
-const Firestore = new firestore.Firestore({ projectId: 'zero65-test' });
-const Collection = Firestore.collection('HELLO_DOCUMENTS');
-
 
 exports.create = async (data) => {
     await entityModel.validateAsync(data);

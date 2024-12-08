@@ -1,13 +1,8 @@
-(async () => {
 
-  process.env.STAGE = process.env.STAGE || 'alpha';
-  process.env.PORT  = process.env.PORT  || 8080;
+process.env.ENV   = process.env.ENV   || 'local';
+process.env.STAGE = process.env.STAGE || 'alpha';
+process.env.PORT  = process.env.PORT  || 8080;
 
-  const Firestore = require('@zero65tech/firestore');
-  await Firestore.init({ projectId: 'zero65-test' });
-
-  require('./app').listen(
-      process.env.PORT,
-      console.log(`\n\nServer (${ process.env.STAGE }) is up and listening at ${ process.env.PORT } port.\n\n`));
-
-})();
+require('./app').listen(
+    process.env.PORT,
+    console.log(`\nServer (${ process.env.STAGE }) is up and listening at ${ process.env.PORT } port.\n`));
