@@ -13,12 +13,12 @@ function toData(doc) {
     return data;
 }
 
-exports.read = async (id) => {
+exports.get = async (id) => {
     const doc = await Collection.doc(id).get();
     return doc.exists ? toData(doc) : null;
 }
 
-exports.readAll = async () => {
+exports.getAll = async () => {
     const snap = await Collection.get();
     return snap.docs.map(toData);
 }

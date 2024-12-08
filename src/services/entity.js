@@ -1,7 +1,7 @@
 const entityRepository = require('../repositories/entity');
 
 exports.list = async () => {
-  return await entityRepository.readAll();
+  return await entityRepository.getAll();
 }
 
 exports.add = async (data) => {
