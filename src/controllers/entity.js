@@ -11,12 +11,6 @@ exports.add = async (req, res) => {
   res.send({ id });
 };
 
-exports.set = async (req, res) => {
-  const { id, ...updates } = req.body;
-  await entityService.update(id, updates);
-  res.sendStatus(204);
-};
-
 exports.update = async (req, res) => {
   const { id, ...updates } = req.body;
   await entityService.update(id, updates);

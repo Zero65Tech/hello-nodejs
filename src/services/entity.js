@@ -12,14 +12,9 @@ exports.add = async (data) => {
   return entityRepository.create(data);
 }
 
-exports.set = async (id, updates) => {
-  updates[ 'timestamp.update' ] = new Date();
-  await entityRepository.set(id, updates);
-}
-
 exports.update = async (id, updates) => {
   updates[ 'timestamp.update' ] = new Date();
-  await entityRepository.set(id, updates);
+  await entityRepository.update(id, updates);
 }
 
 exports.delete = async (id) => {

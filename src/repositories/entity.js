@@ -6,14 +6,12 @@ const Collection = Firestore.collection(Config.collection);
 
 const entityModel = require('../models/entity');
 
-
 function toData(doc) {
     const data = { id: doc.id, ...doc.data() };
     data.timestamp.create = data.timestamp.create.toDate();
     data.timestamp.update = data.timestamp.update.toDate();
     return data;
 }
-
 
 exports.read = async (id) => {
     const doc = await Collection.doc(id).get();
@@ -25,19 +23,14 @@ exports.readAll = async () => {
     return snap.docs.map(toData);
 }
 
-exports.create = async (data) => {
-    await entityModel.validateAsync(data);
+exports.add = async (data) => {
+    await entityModel.add.validateAsync(data);
     const ref = await Collection.add(data);
     return ref.id;
 }
 
-exports.set = async (id, data) => {
-    await entityModel.validateAsync(data);
-    await Collection.doc(id).update(data);
-}
-
 exports.update = async (id, data) => {
-    await entityModel.validateAsync(data);
+    await entityModel.update.validateAsync(data);
     await Collection.doc(id).update(data);
 }
 

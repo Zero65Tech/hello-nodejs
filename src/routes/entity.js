@@ -5,7 +5,6 @@ const router = express.Router();
 
 router.get('/list', entityController.list);
 router.post('/', entityController.add);
-router.put('/', entityController.set);
 router.patch('/', entityController.update);
 router.delete('/', entityController.delete);
 
