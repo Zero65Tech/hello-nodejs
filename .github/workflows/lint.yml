@@ -1,11 +1,11 @@
 name: Lint and Auto-Fix
 
+permissions:
+  contents: write
+
 on:
-  push:
-    branches-ignore:
-      - master
-      - main
   pull_request:
+    types: [opened, synchronize]
 
 jobs:
   lint:
@@ -14,38 +14,38 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
-          # Ensure we have write permissions to push changes back
           persist-credentials: true
-
+      
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 16
           cache: 'npm'
-
+      
       - name: Install dependencies
         run: npm ci
-
-      # First, run lint without --fix to check if there are issues
+      
+      # Run ESLint without --fix to detect errors. 
+      # 'continue-on-error: true' lets us proceed even if lint fails.
       - name: Run ESLint check
+        id: lint
         run: npm run lint
         continue-on-error: true
-        id: lint
-
-      # If lint errors occur, run ESLint in fix mode
+      
+      # If ESLint failed, attempt to fix issues automatically.
       - name: Auto-fix Lint Errors
-        if: failure()
+        if: steps.lint.outcome == 'failure'
         run: npm run lint -- --fix
-
-      # If changes were made, commit and push them
+      
+      # If fixes were applied, commit and push them back to the PR branch.
       - name: Commit and push fixes
-        if: failure() && always()
+        if: steps.lint.outcome == 'failure'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          # Check if there are changes to commit (lint --fix made changes)
+          # Check if any files have changed after running --fix
           if [ -n "$(git status --porcelain)" ]; then
             git add .
-            git commit -m "fix: lint issues fixed by GitHub Actions"
-            git push origin HEAD:${{ github.ref }}
+            git commit -m "fix: auto-fix ESLint issues"
+            git push origin HEAD:${{ github.event.pull_request.head.ref }}
           fi
