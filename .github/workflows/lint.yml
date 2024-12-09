@@ -1,27 +1,51 @@
-name: Linting
+name: Lint and Auto-Fix
 
 on:
   push:
     branches-ignore:
       - master
       - main
+  pull_request:
 
 jobs:
-  test:
+  lint:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          # Ensure we have write permissions to push changes back
+          persist-credentials: true
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: 14
-        cache: 'npm'
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: 'npm'
 
-    - name: Install dependencies
-      run: npm install
+      - name: Install dependencies
+        run: npm ci
 
-    - name: Run ESLint
-      run: npm run lint
+      # First, run lint without --fix to check if there are issues
+      - name: Run ESLint check
+        run: npm run lint
+        continue-on-error: true
+        id: lint
+
+      # If lint errors occur, run ESLint in fix mode
+      - name: Auto-fix Lint Errors
+        if: failure()
+        run: npm run lint -- --fix
+
+      # If changes were made, commit and push them
+      - name: Commit and push fixes
+        if: failure() && always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          # Check if there are changes to commit (lint --fix made changes)
+          if [ -n "$(git status --porcelain)" ]; then
+            git add .
+            git commit -m "fix: lint issues fixed by GitHub Actions"
+            git push origin HEAD:${{ github.ref }}
+          fi
