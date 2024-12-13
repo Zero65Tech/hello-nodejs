@@ -35,7 +35,7 @@ jobs:
       # If ESLint failed, attempt to fix issues automatically.
       - name: Auto-fix Lint Errors
         if: steps.lint.outcome == 'failure'
-        run: npm run lint -- --fix
+        run: npm run lint:fix
       
       # If fixes were applied, commit and push them back to the PR branch.
       - name: Commit and push fixes
