@@ -6,8 +6,8 @@ exports.list = async (req, res) => {
 };
 
 exports.add = async (req, res) => {
-    const data = req.body;
-    const id = await entityService.add(data);
+  const data = req.body;
+  const id = await entityService.add(data);
   res.send({ id });
 };
 
