@@ -1,13 +1,13 @@
 const entityService = require('../services/entity');
 
 exports.list = async (req, res) => {
-  const list = await entityService.list();
-  res.send(list);
+    const list = await entityService.list();
+    res.send(list);
 };
 
 exports.add = async (req, res) => {
-  const data = req.body;
-  const id = await entityService.add(data);
+    const data = req.body;
+    const id = await entityService.add(data);
   res.send({ id });
 };
 
