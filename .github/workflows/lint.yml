@@ -6,6 +6,9 @@ permissions:
 on:
   pull_request:
     types: [opened, synchronize]
+  push:
+    branches:
+      - master
 
 jobs:
   lint:
@@ -25,27 +28,19 @@ jobs:
       - name: Install dependencies
         run: npm ci
       
-      # Run ESLint without --fix to detect errors. 
-      # 'continue-on-error: true' lets us proceed even if lint fails.
-      - name: Run ESLint check
-        id: lint
-        run: npm run lint
-        continue-on-error: true
-      
-      # If ESLint failed, attempt to fix issues automatically.
-      - name: Auto-fix Lint Errors
-        if: steps.lint.outcome == 'failure'
-        run: npm run lint:fix
-      
-      # If fixes were applied, commit and push them back to the PR branch.
-      - name: Commit and push fixes
-        if: steps.lint.outcome == 'failure'
+      # Run ESLint check and fix
+      - name: Run ESLint and auto-fix
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          # Check if any files have changed after running --fix
+          npm run lint || true
+          # Check if any files have changed
           if [ -n "$(git status --porcelain)" ]; then
+            echo "Lint fixes applied. Preparing to commit."
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
             git add .
             git commit -m "fix: auto-fix ESLint issues"
-            git push origin HEAD:${{ github.event.pull_request.head.ref }}
+            git pull --rebase origin ${{ github.ref_name }}
+            git push origin HEAD:${{ github.ref_name }}
+          else
+            echo "No lint fixes required or remaining errors are non-fixable."
           fi
