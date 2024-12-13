@@ -18,6 +18,8 @@ jobs:
         uses: actions/checkout@v3
         with:
           persist-credentials: true
+          # For pull requests, we explicitly checkout the PR head branch
+          ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.ref || github.ref_name }}
       
       - name: Set up Node.js
         uses: actions/setup-node@v3
@@ -28,7 +30,7 @@ jobs:
       - name: Install dependencies
         run: npm ci
       
-      # Run ESLint check and fix
+      # Run ESLint fix directly
       - name: Run ESLint and auto-fix
         run: |
           npm run lint || true
@@ -40,14 +42,12 @@ jobs:
             git add .
             git commit -m "fix: auto-fix ESLint issues"
             
-            # Handle branch dynamically based on the event type
+            # Push changes depending on the event
             if [[ "${{ github.event_name }}" == "pull_request" ]]; then
-              git pull --rebase origin ${{ github.event.pull_request.head.ref }}
               git push origin HEAD:${{ github.event.pull_request.head.ref }}
             else
-              git pull --rebase origin ${{ github.ref_name }}
               git push origin HEAD:${{ github.ref_name }}
             fi
           else
-            echo "No lint fixes required or remaining errors are non-fixable."
+            echo "No lint fixes required or non-fixable errors remain."
           fi
