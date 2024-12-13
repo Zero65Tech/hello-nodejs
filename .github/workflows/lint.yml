@@ -31,7 +31,7 @@ jobs:
       # Run ESLint check and fix
       - name: Run ESLint and auto-fix
         run: |
-          npm run lint || true
+          npm run lint:fix || true
           # Check if any files have changed
           if [ -n "$(git status --porcelain)" ]; then
             echo "Lint fixes applied. Preparing to commit."
@@ -39,8 +39,15 @@ jobs:
             git config user.email "github-actions[bot]@users.noreply.github.com"
             git add .
             git commit -m "fix: auto-fix ESLint issues"
-            git pull --rebase origin ${{ github.ref_name }}
-            git push origin HEAD:${{ github.ref_name }}
+            
+            # Handle branch dynamically based on the event type
+            if [[ "${{ github.event_name }}" == "pull_request" ]]; then
+              git pull --rebase origin ${{ github.event.pull_request.head.ref }}
+              git push origin HEAD:${{ github.event.pull_request.head.ref }}
+            else
+              git pull --rebase origin ${{ github.ref_name }}
+              git push origin HEAD:${{ github.ref_name }}
+            fi
           else
             echo "No lint fixes required or remaining errors are non-fixable."
           fi
