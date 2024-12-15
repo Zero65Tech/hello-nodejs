@@ -1,0 +1,12 @@
+name: Zero65Tech
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  publish:
+    uses: Zero65Tech/github-workflows/.github/workflows/npm-test.yaml@master
+    with:
+      NODE_VERSION: '22' # 22.12.0
