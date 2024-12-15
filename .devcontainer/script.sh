@@ -11,4 +11,4 @@ fi
 
 npm install -g google-artifactregistry-auth nodemon
 
-npx google-artifactregistry-auth && npm install && npm run dev
+npx google-artifactregistry-auth && npm update && npm run dev
