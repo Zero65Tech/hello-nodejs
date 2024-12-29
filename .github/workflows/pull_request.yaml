@@ -5,7 +5,12 @@ on:
     types: [ opened, synchronize ]
 
 jobs:
+  update:
+    uses: Zero65Tech/github-workflows/.github/workflows/update-and-commit.yaml@master
+    with:
+      NODE_VERSION: '22' # 22.12.0
   test:
+    needs: update
     uses: Zero65Tech/github-workflows/.github/workflows/npm-test.yaml@master
     with:
       NODE_VERSION: '22' # 22.12.0
