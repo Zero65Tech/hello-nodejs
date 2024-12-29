@@ -25,7 +25,7 @@
   },
   "devDependencies": {
     "@zero65tech/eslint-config": "2.0.x",
-    "eslint": "8.54.x",
+    "eslint": "9.17.x",
     "jest": "29.7.x",
     "supertest": "6.3.x"
   },
